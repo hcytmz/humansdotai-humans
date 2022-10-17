@@ -1,39 +1,47 @@
+version: 1
+build:
+  proto:
+    path: proto
+    third_party_paths:
+      - third_party/proto
+      - proto_vendor
 accounts:
   - name: alice
-    coins: ["200000000uheart"]
+    coins:
+      - 200000000uheart
   - name: bob
-    coins: ["100000000uheart"]
-validator:
-  name: alice
-  staked: "100000000uheart"
-client:
-  openapi:
-    path: "docs/static/openapi.yml"
-  vuex:
-    path: "vue/src/store"
+    coins:
+      - 100000000uheart
 faucet:
   name: bob
-  coins: ["5uheart"]
+  coins:
+    - 5uheart
+  host: 0.0.0.0:4500
 genesis:
   app_state:
     bank:
       denom_metadata:
-        - description: "The gas token of AI"
-          display: "heart"
-          base: "uheart"
-          name: "HeartToken"
-          symbol: "HEART"
+        - base: uheart
           denom_units:
-            - denom: "uheart"
-              aliases:
-                - "milliheart"
+            - aliases:
+                - milliheart
+              denom: uheart
               exponent: "0"
-            - denom: "mheart"
-              aliases:
-                - "microheart"
+            - aliases:
+                - microheart
+              denom: mheart
               exponent: "3"
-            - denom: "heart"
+            - denom: heart
               exponent: "6"
+          description: The gas token of AI
+          display: heart
+          name: HeartToken
+          symbol: HEART
     staking:
       params:
-        bond_denom: "uheart"
+        bond_denom: uheart
+validators:
+  - name: alice
+    bonded: 100000000uheart
+  - name: bob
+    bonded: 100000000uheart
